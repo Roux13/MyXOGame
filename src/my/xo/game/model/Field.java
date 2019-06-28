@@ -2,19 +2,19 @@ package my.xo.game.model;
 
 public class Field {
 
-    private final int SIZE = 3;
+    private final static int SIZE = 3;
 
-    private Figure[][] figures = new Figure[SIZE][SIZE];
+    private final Figure[][] figures = new Figure[SIZE][SIZE];
 
     public int getSIZE() {
         return SIZE;
     }
 
-    public Figure[][] getFigures() {
-        return figures;
+    public Figure getFigure(final Point point) {
+        return figures[point.getX()][point.getY()];
     }
 
-    public void setFigures(Figure[][] figures) {
-        this.figures = figures;
+    public void setFigure(final Point point, final Figure figure) {
+        figures[point.getX()][point.getY()] = figure;
     }
 }
