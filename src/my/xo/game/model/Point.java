@@ -2,11 +2,11 @@ package my.xo.game.model;
 
 public class Point {
 
-    private int x;
+    private final int x;
 
-    private int y;
+    private final int y;
 
-    public Point(int x, int y) {
+    public Point(final int x, final int y) {
         this.x = x;
         this.y = y;
     }
