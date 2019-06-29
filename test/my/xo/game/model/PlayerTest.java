@@ -1,10 +1,12 @@
 package my.xo.game.model;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
 
-    @org.junit.Test
+    @Test
     public void getName() {
         final String inputValue = "TestName";
         final String expectedValue = inputValue;
@@ -16,7 +18,7 @@ public class PlayerTest {
         assertEquals(expectedValue, actualValue);
     }
 
-    @org.junit.Test
+    @Test
     public void getFigure() {
         final Figure inputValue = Figure.X;
         final Figure expectedValue = inputValue;
