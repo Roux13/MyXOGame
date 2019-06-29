@@ -24,12 +24,9 @@ public class Field {
         return figures[point.getX()][point.getY()];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws InvalidPointException, AllreadyOccupiedEcxeption {
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointException {
         if (!checkPoint(point)) {
             throw new InvalidPointException();
-        }
-        if (figures[point.getX()][point.getY()] != null) {
-            throw new AllreadyOccupiedEcxeption();
         }
         figures[point.getX()][point.getY()] = figure;
     }
