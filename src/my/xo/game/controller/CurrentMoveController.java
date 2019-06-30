@@ -24,7 +24,10 @@ public class CurrentMoveController {
                 }
             }
         }
-        if (countX == countO) {
+        if (countO + countX == field.getSize() * field.getSize()) {
+            return null;
+        }
+        else if (countX == countO) {
             return Figure.X;
         }
         else  {
