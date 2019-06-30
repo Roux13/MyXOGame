@@ -7,7 +7,7 @@ import my.xo.game.model.exceptions.InvalidPointException;
 
 public class WinnerController {
 
-    public Figure getWinner(Field field) throws InvalidPointException{
+    public Figure getWinner(final Field field) throws InvalidPointException{
         if (checkFigureForWinner(field, Figure.X)) {
             return Figure.X;
         }
@@ -17,11 +17,11 @@ public class WinnerController {
         return null;
     }
 
-    private boolean checkFigureForWinner(Field field, Figure figure) throws InvalidPointException {
+    private boolean checkFigureForWinner(final Field field, final Figure figure) throws InvalidPointException {
         return checkLine(field, figure) || checkColumn(field, figure) || checkMainDiagonal(field, figure) || checkSecondaryDiagonal(field, figure);
     }
 
-    private boolean checkLine (Field field, Figure targetFigure) throws InvalidPointException {
+    private boolean checkLine (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount;
         for(int i = 0; i < field.getSIZE(); i++) {
             figuresCount = 0;
@@ -38,7 +38,7 @@ public class WinnerController {
         return false;
     }
 
-    private boolean checkColumn (Field field, Figure targetFigure) throws InvalidPointException {
+    private boolean checkColumn (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount;
         for(int j = 0; j < field.getSIZE(); j++) {
             figuresCount = 0;
@@ -55,7 +55,7 @@ public class WinnerController {
         return false;
     }
 
-    private boolean checkMainDiagonal (Field field, Figure targetFigure) throws InvalidPointException {
+    private boolean checkMainDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
         for(int i = 0; i < field.getSIZE(); i++) {
             for (int j = 0; j < field.getSIZE(); j++) {
@@ -69,7 +69,7 @@ public class WinnerController {
         return figuresCount == field.getSIZE();
     }
 
-    private boolean checkSecondaryDiagonal (Field field, Figure targetFigure) throws InvalidPointException {
+    private boolean checkSecondaryDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
         for(int i = 0; i < field.getSIZE(); i++) {
             for (int j = 0; j < field.getSIZE(); j++) {
