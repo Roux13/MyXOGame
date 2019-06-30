@@ -1,6 +1,5 @@
 package my.xo.game.model;
 
-import my.xo.game.model.exceptions.AllreadyOccupiedEcxeption;
 import my.xo.game.model.exceptions.InvalidPointException;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +9,15 @@ class FieldTest {
 
     @Test
     void getSIZE() {
-        final Field field = new Field();
+        final Field field = new Field(3);
 
-        assertEquals(3, field.getSIZE());
+        assertEquals(3, field.getSize());
 
     }
 
     @Test
     void setFigure() {
-        final Field field = new Field();
+        final Field field = new Field(3);
         final Point inputPoint = new Point(0, 0);
         final Figure inputFigure = Figure.O;
         final Figure expectedFigure = inputFigure;
@@ -38,7 +37,7 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenFigureIsNotSet() throws InvalidPointException{
-        final Field field = new Field();
+        final Field field = new Field(3);
         final Point inputPoint = new Point(0, 0);
 
         final Figure actualFigure = field.getFigure(inputPoint);
@@ -48,7 +47,7 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenXIsNegative() {
-        final Field field = new Field();
+        final Field field = new Field(3);
         final Point inputPoint = new Point(-1, 0);
 
         try {
@@ -61,7 +60,7 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenYIsNegative() {
-        final Field field = new Field();
+        final Field field = new Field(3);
         final Point inputPoint = new Point(0, -1);
 
         try {
@@ -73,8 +72,8 @@ class FieldTest {
     }
     @Test
     void testGetFigureWhenXIsBigger() {
-        final Field field = new Field();
-        final Point inputPoint = new Point(field.getSIZE() + 1, 0);
+        final Field field = new Field(3);
+        final Point inputPoint = new Point(field.getSize() + 1, 0);
 
         try {
             field.getFigure(inputPoint);
@@ -86,8 +85,8 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenYIsBigger() {
-        final Field field = new Field();
-        final Point inputPoint = new Point(0, field.getSIZE() + 1);
+        final Field field = new Field(3);
+        final Point inputPoint = new Point(0, field.getSize() + 1);
 
         try {
             field.getFigure(inputPoint);
@@ -99,7 +98,7 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenXAndYIsNegative() {
-        final Field field = new Field();
+        final Field field = new Field(3);
         final Point inputPoint = new Point(-1, -1);
 
         try {
@@ -112,8 +111,8 @@ class FieldTest {
 
     @Test
     void testGetFigureWhenXAndYIsBigger() {
-        final Field field = new Field();
-        final Point inputPoint = new Point(field.getSIZE() + 1, field.getSIZE() + 1);
+        final Field field = new Field(3);
+        final Point inputPoint = new Point(field.getSize() + 1, field.getSize() + 1);
 
         try {
             field.getFigure(inputPoint);
