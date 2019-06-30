@@ -37,7 +37,7 @@ class FieldTest {
     }
 
     @Test
-    void testGetFigureWhenFigureIsNotSet() throws Exception{
+    void testGetFigureWhenFigureIsNotSet() throws InvalidPointException{
         final Field field = new Field();
         final Point inputPoint = new Point(0, 0);
 
