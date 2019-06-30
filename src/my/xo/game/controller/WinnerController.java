@@ -23,15 +23,15 @@ public class WinnerController {
 
     private boolean checkLine (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount;
-        for(int i = 0; i < field.getSIZE(); i++) {
+        for(int i = 0; i < field.getSize(); i++) {
             figuresCount = 0;
-            for (int j = 0; j < field.getSIZE(); j++) {
+            for (int j = 0; j < field.getSize(); j++) {
                 Figure currentFigure = field.getFigure(new Point(i, j));
                 if (field.getFigure(new Point(i, j))!= null && targetFigure.equals(currentFigure)) {
                     figuresCount++;
                 }
             }
-            if (figuresCount == field.getSIZE()) {
+            if (figuresCount == field.getSize()) {
                 return true;
             }
         }
@@ -40,15 +40,15 @@ public class WinnerController {
 
     private boolean checkColumn (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount;
-        for(int j = 0; j < field.getSIZE(); j++) {
+        for(int j = 0; j < field.getSize(); j++) {
             figuresCount = 0;
-            for (int i = 0; i < field.getSIZE(); i++) {
+            for (int i = 0; i < field.getSize(); i++) {
                 Figure currentFigure = field.getFigure(new Point(i, j));
                 if (field.getFigure(new Point(i, j))!= null && targetFigure.equals(currentFigure)) {
                     figuresCount++;
                 }
             }
-            if (figuresCount == field.getSIZE()) {
+            if (figuresCount == field.getSize()) {
                 return true;
             }
         }
@@ -57,8 +57,8 @@ public class WinnerController {
 
     private boolean checkMainDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
-        for(int i = 0; i < field.getSIZE(); i++) {
-            for (int j = 0; j < field.getSIZE(); j++) {
+        for(int i = 0; i < field.getSize(); i++) {
+            for (int j = 0; j < field.getSize(); j++) {
                 if (i == j) {
                     if (field.getFigure(new Point(i, j))!= null && field.getFigure(new Point(i, j)).equals(targetFigure)) {
                         figuresCount++;
@@ -66,21 +66,21 @@ public class WinnerController {
                 }
             }
         }
-        return figuresCount == field.getSIZE();
+        return figuresCount == field.getSize();
     }
 
     private boolean checkSecondaryDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
-        for(int i = 0; i < field.getSIZE(); i++) {
-            for (int j = 0; j < field.getSIZE(); j++) {
-                if (i + j == field.getSIZE() - 1) {
+        for(int i = 0; i < field.getSize(); i++) {
+            for (int j = 0; j < field.getSize(); j++) {
+                if (i + j == field.getSize() - 1) {
                     if (field.getFigure(new Point(i, j))!= null && field.getFigure(new Point(i, j)).equals(targetFigure)) {
                         figuresCount++;
                     }
                 }
             }
         }
-        return figuresCount == field.getSIZE();
+        return figuresCount == field.getSize();
     }
 
 }
