@@ -27,7 +27,7 @@ public class WinnerController {
             figuresCount = 0;
             for (int j = 0; j < field.getSIZE(); j++) {
                 Figure currentFigure = field.getFigure(new Point(i, j));
-                if (currentFigure.equals(targetFigure)) {
+                if (field.getFigure(new Point(i, j))!= null && targetFigure.equals(currentFigure)) {
                     figuresCount++;
                 }
             }
@@ -44,7 +44,7 @@ public class WinnerController {
             figuresCount = 0;
             for (int i = 0; i < field.getSIZE(); i++) {
                 Figure currentFigure = field.getFigure(new Point(i, j));
-                if (currentFigure.equals(targetFigure)) {
+                if (field.getFigure(new Point(i, j))!= null && targetFigure.equals(currentFigure)) {
                     figuresCount++;
                 }
             }
@@ -60,7 +60,7 @@ public class WinnerController {
         for(int i = 0; i < field.getSIZE(); i++) {
             for (int j = 0; j < field.getSIZE(); j++) {
                 if (i == j) {
-                    if (field.getFigure(new Point(i, j)).equals(targetFigure)) {
+                    if (field.getFigure(new Point(i, j))!= null && field.getFigure(new Point(i, j)).equals(targetFigure)) {
                         figuresCount++;
                     }
                 }
@@ -74,7 +74,7 @@ public class WinnerController {
         for(int i = 0; i < field.getSIZE(); i++) {
             for (int j = 0; j < field.getSIZE(); j++) {
                 if (i + j == field.getSIZE() - 1) {
-                    if (field.getFigure(new Point(i, j)).equals(targetFigure)) {
+                    if (field.getFigure(new Point(i, j))!= null && field.getFigure(new Point(i, j)).equals(targetFigure)) {
                         figuresCount++;
                     }
                 }
