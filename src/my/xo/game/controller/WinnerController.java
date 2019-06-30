@@ -8,13 +8,17 @@ import my.xo.game.model.exceptions.InvalidPointException;
 public class WinnerController {
 
     public Figure getWinner(Field field) throws InvalidPointException{
-        if (checkLine(field, Figure.X) || checkColumn(field, Figure.X)) {
+        if (checkFigureForWinner(field, Figure.X)) {
             return Figure.X;
         }
-        if (checkLine(field, Figure.O) || checkColumn(field, Figure.O)) {
+        if (checkFigureForWinner(field, Figure.O)) {
             return Figure.O;
         }
         return null;
+    }
+
+    private boolean checkFigureForWinner(Field field, Figure figure) throws InvalidPointException {
+        return checkLine(field, figure) || checkColumn(field, figure) || checkMainDiagonal(field, figure) || checkSecondaryDiagonal(field, figure);
     }
 
     private boolean checkLine (Field field, Figure targetFigure) throws InvalidPointException {
@@ -49,6 +53,34 @@ public class WinnerController {
             }
         }
         return false;
+    }
+
+    private boolean checkMainDiagonal (Field field, Figure targetFigure) throws InvalidPointException {
+        int figuresCount = 0;
+        for(int i = 0; i < field.getSIZE(); i++) {
+            for (int j = 0; j < field.getSIZE(); j++) {
+                if (i == j) {
+                    if (field.getFigure(new Point(i, j)).equals(targetFigure)) {
+                        figuresCount++;
+                    }
+                }
+            }
+        }
+        return figuresCount == field.getSIZE();
+    }
+
+    private boolean checkSecondaryDiagonal (Field field, Figure targetFigure) throws InvalidPointException {
+        int figuresCount = 0;
+        for(int i = 0; i < field.getSIZE(); i++) {
+            for (int j = 0; j < field.getSIZE(); j++) {
+                if (i + j == field.getSIZE() - 1) {
+                    if (field.getFigure(new Point(i, j)).equals(targetFigure)) {
+                        figuresCount++;
+                    }
+                }
+            }
+        }
+        return figuresCount == field.getSIZE();
     }
 
 }
