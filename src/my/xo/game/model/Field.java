@@ -2,19 +2,25 @@ package my.xo.game.model;
 
 
 import my.xo.game.model.exceptions.InvalidPointException;
-import my.xo.game.model.exceptions.AllreadyOccupiedEcxeption;
 
 public class Field {
 
-    private final static int SIZE = 3;
-
     private final static int MIN_COORDINATE = 0;
-    private final static int MAX_COORDINATE = SIZE;
 
-    private final Figure[][] figures = new Figure[SIZE][SIZE];
+    private final int size;
 
-    public int getSIZE() {
-        return SIZE;
+    private final int maxCoordinate;
+
+    private final Figure[][] figures;
+
+    public Field(int size) {
+        this.size = size;
+        figures = new Figure[size][size];
+        maxCoordinate = size;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
@@ -37,6 +43,6 @@ public class Field {
     }
 
     private boolean checkCoordinate(final int coordinate) {
-        return coordinate >= MIN_COORDINATE && coordinate < MAX_COORDINATE;
+        return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
     }
 }
