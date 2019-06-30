@@ -69,16 +69,12 @@ public class WinnerController {
                 if (i == j) {
                     Figure currentFigure = field.getFigure(new Point(i, j));
                     if (currentFigure == null) {
-                        hasNull = true;
-                        break;
+                        return false;
                     }
                     if (targetFigure.equals(currentFigure)) {
                         figuresCount++;
                     }
                 }
-            }
-            if (hasNull) {
-                break;
             }
         }
         return figuresCount == field.getSize();
@@ -92,16 +88,12 @@ public class WinnerController {
                 if (i + j == field.getSize() - 1) {
                     Figure currentFigure = field.getFigure(new Point(i, j));
                     if (currentFigure == null) {
-                        hasNull = true;
-                        break;
+                        return false;
                     }
                     if (targetFigure.equals(currentFigure)) {
                         figuresCount++;
                     }
                 }
-            }
-            if (hasNull) {
-                break;
             }
         }
         return figuresCount == field.getSize();
