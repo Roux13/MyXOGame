@@ -12,10 +12,10 @@ class MoveControllerTest {
 
     @Test
     void applyFigureWhenFieldIsOccupied() throws Exception{
-        Field field = new Field(3);
-        Figure occupierFigure = Figure.X;
-        Point testPoint = new Point(0, 0);
-        MoveController moveController = new MoveController();
+        final Field field = new Field(3);
+        final Figure occupierFigure = Figure.X;
+        final Point testPoint = new Point(0, 0);
+        final MoveController moveController = new MoveController();
         field.setFigure(testPoint, occupierFigure);
 
         try {
@@ -29,15 +29,15 @@ class MoveControllerTest {
 
     @Test
     void applyFigureWhenFieldIsEmpty() throws Exception{
-        Field field = new Field(3);
-        Figure inputFigure = Figure.X;
-        Point testPoint = new Point(0, 0);
-        MoveController moveController = new MoveController();
+        final Field field = new Field(3);
+        final Figure inputFigure = Figure.X;
+        final Point testPoint = new Point(0, 0);
+        final MoveController moveController = new MoveController();
 
         moveController.applyFigure(field, testPoint, inputFigure);
 
-        Figure actualFigure = field.getFigure(testPoint);
-        Figure expectedFigure = inputFigure;
+        final Figure actualFigure = field.getFigure(testPoint);
+        final Figure expectedFigure = inputFigure;
 
         assertEquals(expectedFigure, actualFigure);
     }
