@@ -43,7 +43,7 @@ class CurrentMoveControllerTest {
     }
 
     @Test
-    void currentMove() throws InvalidPointException {
+    void currentMoveStandardCase() throws InvalidPointException {
         Field field = new Field(3);
         CurrentMoveController currentMoveController = new CurrentMoveController();
         int countFigure = 0;
@@ -52,20 +52,19 @@ class CurrentMoveControllerTest {
                 if (countFigure % 2 == 0) {
                     field.setFigure(new Point(i, j), Figure.X);
                     countFigure++;
+                    if (countFigure < field.getSize() * field.getSize()) {
+                        Figure actualFigure = currentMoveController.currentMove(field);
+                        Figure expectedFigure = Figure.O;
+
+                        assertEquals(expectedFigure, actualFigure);
+                    }
                 }
                 else if (countFigure % 2 != 0) {
                     field.setFigure(new Point(i, j), Figure.O);
                     countFigure++;
-                }
-                if (countFigure < field.getSize() * field.getSize()) {
-                    if (countFigure % 2 == 0) {
+                    if (countFigure < field.getSize() * field.getSize()) {
                         Figure actualFigure = currentMoveController.currentMove(field);
                         Figure expectedFigure = Figure.X;
-
-                        assertEquals(expectedFigure, actualFigure);
-                    } else if (countFigure % 2 != 0) {
-                        Figure actualFigure = currentMoveController.currentMove(field);
-                        Figure expectedFigure = Figure.O;
 
                         assertEquals(expectedFigure, actualFigure);
                     }
