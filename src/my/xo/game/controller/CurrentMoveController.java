@@ -8,24 +8,30 @@ import my.xo.game.model.exceptions.InvalidPointException;
 public class CurrentMoveController {
 
     public Figure currentMove(final Field field) throws InvalidPointException {
-        int countFIgure = 0;
+        int countFigure = 0;
         for (int i = 0; i < field.getSize(); i++) {
-            for (int j = 0; j < field.getSize(); j++) {
-                final Point point = new Point(i, j);
-                if (field.getFigure(point) != null) {
-                    countFIgure++;
-                }
-            }
+            countFigure += countFigureInTheRow(field, i);
         }
-        if (countFIgure == field.getSize() * field.getSize()) {
+        if (countFigure == field.getSize() * field.getSize()) {
             return null;
         }
-        else if (countFIgure % 2 == 0) {
+        else if (countFigure % 2 == 0) {
             return Figure.X;
         }
         else  {
             return Figure.O;
         }
+    }
+
+    private int countFigureInTheRow(final Field field, final int row) throws InvalidPointException {
+        int countFigure = 0;
+        for (int j = 0; j < field.getSize(); j++) {
+            final Point point = new Point(row, j);
+            if (field.getFigure(point) != null) {
+                countFigure++;
+            }
+        }
+        return  countFigure;
     }
 
 }
