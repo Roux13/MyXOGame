@@ -26,7 +26,7 @@ public class WinnerController {
         for(int i = 0; i < field.getSize(); i++) {
             figuresCount = 0;
             for (int j = 0; j < field.getSize(); j++) {
-                Figure currentFigure = field.getFigure(new Point(i, j));
+                final Figure currentFigure = field.getFigure(new Point(i, j));
                 if (currentFigure == null) {
                     break;
                 }
@@ -46,7 +46,7 @@ public class WinnerController {
         for(int j = 0; j < field.getSize(); j++) {
             figuresCount = 0;
             for (int i = 0; i < field.getSize(); i++) {
-                Figure currentFigure = field.getFigure(new Point(i, j));
+                final Figure currentFigure = field.getFigure(new Point(i, j));
                 if (currentFigure == null) {
                     break;
                 }
@@ -63,11 +63,10 @@ public class WinnerController {
 
     private boolean checkMainDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
-        boolean hasNull = false;
         for(int i = 0; i < field.getSize(); i++) {
             for (int j = 0; j < field.getSize(); j++) {
                 if (i == j) {
-                    Figure currentFigure = field.getFigure(new Point(i, j));
+                    final Figure currentFigure = field.getFigure(new Point(i, j));
                     if (currentFigure == null) {
                         return false;
                     }
@@ -82,11 +81,10 @@ public class WinnerController {
 
     private boolean checkSecondaryDiagonal (final Field field, final Figure targetFigure) throws InvalidPointException {
         int figuresCount = 0;
-        boolean hasNull = false;
         for(int i = 0; i < field.getSize(); i++) {
             for (int j = 0; j < field.getSize(); j++) {
                 if (i + j == field.getSize() - 1) {
-                    Figure currentFigure = field.getFigure(new Point(i, j));
+                    final Figure currentFigure = field.getFigure(new Point(i, j));
                     if (currentFigure == null) {
                         return false;
                     }
