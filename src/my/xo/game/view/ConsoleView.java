@@ -7,6 +7,7 @@ import my.xo.game.model.*;
 import my.xo.game.model.exceptions.AllreadyOccupiedEcxeption;
 import my.xo.game.model.exceptions.InvalidPointException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleView {
@@ -61,8 +62,7 @@ public class ConsoleView {
             }
         }
         catch (InvalidPointException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            System.out.println("The coordinate can be from 0 to 2");
         }
         catch (AllreadyOccupiedEcxeption e) {
             System.out.println("This point is already occupied, please input other point");
@@ -79,7 +79,14 @@ public class ConsoleView {
         System.out.println();
         System.out.format("Please, input a coordinate %s:   ", coordinateName);
         final Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        int inputCoordinate = 0;
+        try {
+            inputCoordinate = sc.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Please, enter number from 0 to 2");
+        }
+        return inputCoordinate;
     }
 
     private void printLine(Field field, int x) {
