@@ -3,10 +3,7 @@ package my.xo.game.view;
 import my.xo.game.controller.CurrentMoveController;
 import my.xo.game.controller.MoveController;
 import my.xo.game.controller.WinnerController;
-import my.xo.game.model.Field;
-import my.xo.game.model.Figure;
-import my.xo.game.model.Game;
-import my.xo.game.model.Point;
+import my.xo.game.model.*;
 import my.xo.game.model.exceptions.AllreadyOccupiedEcxeption;
 import my.xo.game.model.exceptions.InvalidPointException;
 
@@ -21,6 +18,9 @@ public class ConsoleView {
     private final MoveController moveController = new MoveController();
 
     public void show (final Game game) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+        }
         System.out.format("Game name: %s\n", game.getName());
         printSeparator();
         final Field field = game.getField();
@@ -41,14 +41,23 @@ public class ConsoleView {
                     return false;
                 }
                 else {
-                    System.out.format("Winner is %s\n", winnerController.getWinner(field));
+                    System.out.format("Winner is figure %s\n", currentFigure);
                     return false;
                 }
             }
             else {
-                System.out.format("Next move is %s\n", figure);
+                System.out.format("Next move is figure %s\n", figure);
+                System.out.println();
                 final Point point = askPoint();
                 moveController.applyFigure(field, point, figure);
+                final Figure isWinner = winnerController.getWinner(field);
+                if (isWinner != null) {
+                    System.out.println();
+                    System.out.format("Winner is figure %s\n", isWinner);
+                    System.out.println();
+                    printWinnerName(game, isWinner);
+                    return false;
+                }
             }
         }
         catch (InvalidPointException e) {
@@ -67,7 +76,8 @@ public class ConsoleView {
     }
 
     private int askCoordinate(final String coordinateName) {
-        System.out.format("Please, input %s:   ", coordinateName);
+        System.out.println();
+        System.out.format("Please, input a coordinate %s:   ", coordinateName);
         final Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
@@ -90,5 +100,16 @@ public class ConsoleView {
 
     private void printSeparator() {
         System.out.println("-------------");
+    }
+
+    private void printWinnerName(Game game, Figure figure) {
+        Player winner = null;
+        for (int i = 0; i < 2; i++) {
+            if (game.getPlayers(i).getFigure().equals(figure)) {
+                winner = game.getPlayers(i);
+            }
+        }
+        String winnerName = winner.getName();
+        System.out.format("Winner name is %s! Congratulations!!!", winnerName);
     }
 }
